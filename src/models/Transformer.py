@@ -12,9 +12,9 @@ class Transformer(BaseModel):
 
     def transform(self, samples: List[float] or float) -> List[float] or float:
         if isinstance(samples, float):
-            return samples**self.coeff() + self.off()
+            return samples*self.coeff() + self.off()
         else:
-            return np.array(samples)**self.coeff() + self.off()
+            return np.array(samples)*self.coeff() + self.off()
     
     def coeff(self):
         return self.coefficient + np.random.normal(scale=self.fuzz.coefficient)
