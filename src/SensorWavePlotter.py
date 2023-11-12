@@ -1,12 +1,13 @@
-from src.models.SensorWave import SensorWave
-from src.models.WaveNoise import WaveNoise
-from src.models.Transformer import Transformer
 import matplotlib.pyplot as plt
+from typing import Optional
+from src.models.RawWave import RawWave
+from src.models.WaveNoise import WaveNoise
+from src.models.SensorWave import SensorWave
 
 class SensorWavePlotter:
 
-    def __init__(self, sensor: SensorWave):
-        self.sensor = sensor
+    def __init__(self, sensor: Optional[SensorWave] = None, sensor_wave: Optional[RawWave] = None, sensor_noise: Optional[WaveNoise] = None):
+        self.sensor = sensor or SensorWave(wave=sensor_wave, noise=sensor_noise)
 
     def plot(self, N: int, M: int = 1000):
         colors = ['b', 'g', 'r', 'c', 'm', 'y', 'k', 'w']

@@ -19,7 +19,6 @@ class SensorWave(BaseModel):
             noise = self.noise
 
         for j in range(N):
-            # fuzz = Transformer(fuzz=Fuzz(offset=1))
             samples.append(self.amplitude(noise) * np.sin(2 * np.pi * self.frequency(noise) * (j / self.wave.sample_rate) + self.phase(noise)) + self.offset(noise))
 
         return np.array(samples)
