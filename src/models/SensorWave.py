@@ -24,27 +24,15 @@ class SensorWave(BaseModel):
         return np.array(samples)
     
     def amplitude(self, noise: WaveNoise = None) -> float:
-        if noise is None:
-            noise = self.noise
-        
         return noise.amplitude.transform(self.wave.amplitude)
     
     def frequency(self, noise: WaveNoise = None) -> List[float]:
-        if noise is None:
-            noise = self.noise
-        
         return noise.frequency.transform(self.wave.frequency)
     
     def phase(self, noise: WaveNoise = None) -> List[float]:
-        if noise is None:
-            noise = self.noise
-        
         return noise.phase.transform(self.wave.phase)
     
     def offset(self, noise: WaveNoise = None) -> List[float]:
-        if noise is None:
-            noise = self.noise
-        
         return noise.offset.transform(self.wave.offset)
     
     
