@@ -10,6 +10,14 @@ class SensorWave(BaseModel):
     wave: RawWave
     noise: WaveNoise
 
+    def get_raw_data(self, N: int):
+        return [self.get_labels(N), self.get_raw_sample(N)]
+    
+    def get_noise_data(self, N: int):
+        return [self.get_labels(N), self.get_sample_with_noise(N)]
+    
+    # ---------------------------------------------------------------------------------------------
+
     def get_raw_sample(self, N: int):
         return self.wave.get_sample(N)
 
@@ -22,6 +30,11 @@ class SensorWave(BaseModel):
             samples.append(self.amplitude(noise) * np.sin(2 * np.pi * self.frequency(noise) * (j / self.wave.sample_rate) + self.phase(noise)) + self.offset(noise))
 
         return np.array(samples)
+    
+    def get_labels(self, N: int):
+        return np.arange(stop=N, step=1)/self.wave.sample_rate
+    
+    # ---------------------------------------------------------------------------------------------
     
     def amplitude(self, noise: WaveNoise = None) -> float:
         return noise.amplitude.transform(self.wave.amplitude)

@@ -14,10 +14,9 @@ class SensorWavePlotter:
 
     def plot(self, N: int, M: int = 1000):
         colors = ['b', 'g', 'r', 'c', 'm', 'y', 'k', 'w']
-        labels = np.arange(stop=M, step=1/self.sensor.wave.frequency)
-        plt.plot(labels, self.sensor.get_raw_sample(M), color=colors[0], label=f'Truth')
+        plt.plot(*self.sensor.get_raw_data(M), color=colors[0], label=f'Truth')
         for i in range(N):
-            plt.plot(labels, self.sensor.get_sample_with_noise(M), color=colors[i+1], label=f'Sensor {i}')
+            plt.plot(*self.sensor.get_noise_data(M), color=colors[i+1], label=f'Sensor {i}')
 
         plt.legend()
         plt.show(block=True)
