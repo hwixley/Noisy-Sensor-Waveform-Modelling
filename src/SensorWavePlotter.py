@@ -1,23 +1,21 @@
 import matplotlib.pyplot as plt
-from typing import Optional
 import numpy as np
-from src.models.RawWave import RawWave
-from src.models.WaveNoise import WaveNoise
 from src.models.SensorWave import SensorWave
 
 class SensorWavePlotter:
 
-    sensor: SensorWave
+    sensors: [SensorWave]
 
-    def __init__(self, sensor: Optional[SensorWave] = None, sensor_wave: Optional[RawWave] = None, sensor_noise: Optional[WaveNoise] = None):
-        self.sensor = sensor or SensorWave(wave=sensor_wave, noise=sensor_noise)
+    def __init__(self, sensors: [SensorWave] = []):
+        self.sensors = sensors
 
     def plot(self, N: int, M: int = 1000):
-        color = iter(plt.cm.rainbow(np.linspace(0, 1, N+1)))
+        color = iter(plt.cm.rainbow(np.linspace(0, 1, (N+1)*len(self.sensors))))
 
-        plt.plot(*self.sensor.get_raw_data(M), color=next(color), label=f'Truth')
-        for i in range(N):
-            plt.plot(*self.sensor.get_noise_data(M), color=next(color), label=f'Sensor {i}')
+        for i, sensor in self.sensors:
+            plt.plot(*sensor.get_raw_data(M), color=next(color), label=f'Sensor {i} Truth')
+            for j in range(N):
+                plt.plot(*sensor.get_noise_data(M), color=next(color), label=f'Sensor {i} Reading {j}')
 
         plt.legend()
         plt.show(block=True)
