@@ -1,4 +1,4 @@
-# Tunable Waveforms for Modelling Noisy Sensor Signals
+# Noisy Sensor Waveform Modelling 🌊
 A python script for generating mock sensor waveform signal data with tunable noise.
 
 <br>
