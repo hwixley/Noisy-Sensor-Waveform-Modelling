@@ -1,7 +1,7 @@
 # Sinusoidal Waveforms for Modelling Noisy Sensor Signals
 A python library for generating mock sensor signals in a meaningful way with tunable noise.
 
-![sample](generated/2sensors-3readings-per-sensor.png)
+<img src="generated/2sensors-3readings-per-sensor.png" style="width: 100%">
 
 # Install
 
