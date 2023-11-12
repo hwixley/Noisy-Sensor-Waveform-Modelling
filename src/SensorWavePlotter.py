@@ -13,9 +13,10 @@ class SensorWavePlotter:
         color = iter(plt.cm.rainbow(np.linspace(0, 1, (N+1)*len(self.sensors))))
 
         for i, sensor in enumerate(self.sensors):
-            plt.plot(*sensor.get_raw_data(M), color=next(color), label=f'Sensor {i} Truth')
+            plt.plot(*sensor.get_raw_data(M), color=next(color), label=f'S{i+1}: f={sensor.wave.frequency}, a={sensor.wave.amplitude}, p={sensor.wave.phase}, o={sensor.wave.offset}')
             for j in range(N):
-                plt.plot(*sensor.get_noise_data(M), color=next(color), label=f'Sensor {i} Reading {j}')
+                plt.plot(*sensor.get_noise_data(M), color=next(color), label=f'S{i+1}: #{j+1}')
 
         plt.legend()
+        plt.grid(True)
         plt.show(block=True)
