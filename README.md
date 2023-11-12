@@ -1,5 +1,5 @@
-# Tunable Sinusoidal Waveforms for Modelling Noisy Sensor Signals
-A python library for generating mock sensor signals in a meaningful way with tunable noise.
+# Tunable Waveforms for Modelling Noisy Sensor Signals
+A python script for generating mock sensor waveform signal data with tunable noise.
 
 <br>
 
