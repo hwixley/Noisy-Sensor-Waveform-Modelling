@@ -17,7 +17,7 @@ class Transformer(BaseModel):
             return np.array(samples)*self.coeff() + self.off()
     
     def coeff(self):
-        return self.coefficient*np.random.normal(scale=self.fuzz.coefficient)
+        return self.coefficient + np.random.normal(scale=self.fuzz.coefficient)
     
     def off(self):
         return self.offset + np.random.normal(scale=self.fuzz.offset)
